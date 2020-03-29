@@ -55,22 +55,24 @@ if __name__ == '__main__':
         os.makedirs(dist)
         
     projects = {
-        'Chart': 26,
-        'Closure': 133,
-        'CommonsCodec': 22,
-        'CommonsCLI': 24,
-        'CommonsCsv': 12,
-        'CommonsJXPath': 14,
-        'Guava': 9,
-        'JacksonCore': 13,
-        'JacksonDatabind': 39,
-        'JacksonXml': 5,
-        'Jsoup': 64,
-        'Lang': 65,
-        'Math': 106,
-        'Mockito': 38,
-        'Time': 27
-        }
+        # 'Chart': 26,
+        'Cli': 39,
+        # 'Closure': 174,
+        # 'Codec': 18,
+        'Collections': 4,
+        # 'Compress': 47,
+        # 'Csv': 16,
+        # 'Gson': 18,
+        # 'JacksonCore': 26,
+        # 'JacksonDatabind': 112,
+        'JacksonXml': 6,
+        # 'Jsoup': 93,
+        # 'JxPath': 22,
+        # 'Lang': 64,
+        # 'Math': 106,
+        # 'Mockito': 38,
+        # 'Time': 26
+    }
     
     Parallel(n_jobs=jobs)(delayed(check_out_each_project)
                           (d4j_binary, dist, proj, ver, ver_type) 
