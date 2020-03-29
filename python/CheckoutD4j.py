@@ -53,28 +53,40 @@ if __name__ == '__main__':
     print(dist)
     if not os.path.isdir(dist):
         os.makedirs(dist)
-        
+
+    cli_list = list(range(1, 6))
+    cli_list += list(range(7, 41))
+    closure_list = list(range(1, 63))
+    closure_list += list(range(64, 93))
+    closure_list += list(range(94, 177))
+    collection_list = list(range(25, 29))
+    lang_list = list(range(1, 2))
+    lang_list += list(range(3, 66))
+    time_list = list(range(1, 21))
+    time_list += list(range(22, 28))
+
     projects = {
-        # 'Chart': 26,
-        'Cli': 39,
-        # 'Closure': 174,
-        # 'Codec': 18,
-        'Collections': 4,
-        # 'Compress': 47,
-        # 'Csv': 16,
-        # 'Gson': 18,
-        # 'JacksonCore': 26,
-        # 'JacksonDatabind': 112,
-        'JacksonXml': 6,
-        # 'Jsoup': 93,
-        # 'JxPath': 22,
-        # 'Lang': 64,
-        # 'Math': 106,
-        # 'Mockito': 38,
-        # 'Time': 26
+        # 'Chart': list(range(1, 27)),
+        'Cli': cli_list,
+        # 'Closure': closure_list,
+        # 'Codec': list(range(1, 19)),
+        # 'Collections': collection_list,
+        # 'Compress': list(range(1, 48)),
+        # 'Csv': list(range(1, 17)),
+        # 'Gson': list(range(1, 19)),
+        # 'JacksonCore': list(range(1, 27)),
+        # 'JacksonDatabind': list(range(1, 113)),
+        # 'JacksonXml': list(range(1, 7)),
+        # 'Jsoup': list(range(1, 94)),
+        # 'JxPath': list(range(1, 23)),
+        # 'Lang': lang_list,
+        # 'Math': list(range(1, 107)),
+        # 'Mockito': list(range(1, 39)),
+        # 'Time': time_list
     }
     
     Parallel(n_jobs=jobs)(delayed(check_out_each_project)
-                          (d4j_binary, dist, proj, ver, ver_type) 
-                            for proj, count in projects.items() 
-                            for ver in range(1, count + 1))
+                          (d4j_binary, dist, proj, bug_list[bug_num], ver_type)
+                            for proj, bug_list in projects.items()
+                            for bug_num in range(0, len(bug_list))
+                          )
